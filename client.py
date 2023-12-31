@@ -1,7 +1,7 @@
 import socket
 import time
 
-SERVER_HOST = '192.168.15.10'
+SERVER_HOST = 'localhost'
 SERVER_PORT = 8888
 
 def connect_to_server():
