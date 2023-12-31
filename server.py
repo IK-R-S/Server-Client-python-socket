@@ -1,7 +1,7 @@
 import socket
 
 # Declarando variáveis de conexão para subir o servidor
-HOST = '192.168.15.9' # Endereço do servidor (esta máquina)
+HOST = 'localhost' # Endereço do servidor (esta máquina)
 PORT = 8888 # Porta de conexão
 server = (HOST, PORT)
 
