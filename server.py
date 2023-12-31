@@ -1,13 +1,14 @@
 import socket
 
-HOST = '127.0.0.1'
-PORT = 8888
+# Declarando variáveis de conexão para subir o servidor
+HOST = '192.168.15.9' # Endereço do servidor (esta máquina)
+PORT = 8888 # Porta de conexão
 server = (HOST, PORT)
 
 # Declarando tipo de cconexão TCP IPV4 com socket
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-# Comninando endereço e porta do servidor na variável s do socket
-s.bind((HOST, PORT))
+# Combinando endereço e porta do servidor na variável s do socket
+s.bind(server)
 
 # Socket em escuta
 s.listen()
