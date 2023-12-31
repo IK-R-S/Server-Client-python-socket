@@ -26,5 +26,5 @@ while True:
         break
     else:
         dataContent = data.decode('utf-8')
-        print('DADOS RECEBIDOS DO CLIENTE: {dataContent}\n\033[0;0;0m')
+        print(f'DADOS RECEBIDOS DO CLIENTE: {dataContent}\n\033[0;0;0m')
         clientConn.sendall(str.encode('SERVER OK - STATUS 200'))
