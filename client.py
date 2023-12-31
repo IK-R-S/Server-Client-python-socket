@@ -1,26 +1,31 @@
 import socket
+import time
 
-# Declarando variáveis de conexão para conectar com o servidor
-SERVER_HOST = 'localhost' # Endereço do servidor
-SERVER_PORT = 8888 # Porta de conexão
-server = (SERVER_HOST, SERVER_PORT)
+SERVER_HOST = '192.168.15.10'
+SERVER_PORT = 8888
 
-# Definindo socket de conexão TCP IPV4
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+def connect_to_server():
+    while True:
+        try:
+            print("\nAGUARDANDO RESPOSTA DO SERVIDOR...")
+            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            s.connect((SERVER_HOST, SERVER_PORT))
+            return s
+        except (socket.error, socket.timeout):
+            print(f"\n\033[31mSem resposta, enviando nova requisição ao servidor em {SERVER_HOST}:{SERVER_PORT}\033[0;0;0m")
+            time.sleep(2)
 
-# Conectando com o servidor
-print("\nAGUARDANDO RESPOSTA DO SERVIDOR...")
-s.connect(server)
+# Inicia a tentativa de conexão
+client_socket = connect_to_server()
 
-# Enviado dados ao servidor
+# Enviando dados ao servidor
 packet = 'Testando conexão'
-s.sendall(str.encode(packet))
+client_socket.sendall(str.encode(packet))
 
 # Recebendo dados do servidor
-serverResponse = s.recv(1024)
+serverResponse = client_socket.recv(1024)
 response = serverResponse.decode('utf-8')
-print('\nMENSAGEM DO SERVIDOR: ', response)
+print(f'\n\033[1;34mRESPOSTA RECEBIDA:\n\033[0;0;0m{response}\n')
 
 # Encerrando socket de conexão com o servidor
-s.close()
-print("CONEXÃO ENCERRADA")
+client_socket.close()
