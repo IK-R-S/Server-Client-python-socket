@@ -9,6 +9,7 @@ server = (SERVER_HOST, SERVER_PORT)
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # Conectando com o servidor
+print("\nAGUARDANDO RESPOSTA DO SERVIDOR...")
 s.connect(server)
 
 # Enviado dados ao servidor
@@ -18,7 +19,8 @@ s.sendall(str.encode(packet))
 # Recebendo dados do servidor
 serverResponse = s.recv(1024)
 response = serverResponse.decode('utf-8')
-print(response)
+print('\nMENSAGEM DO SERVIDOR: ', response)
 
 # Encerrando socket de conexão com o servidor
 s.close()
+print("CONEXÃO ENCERRADA")
