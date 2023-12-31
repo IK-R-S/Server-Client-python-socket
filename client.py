@@ -1,15 +1,24 @@
 import socket
 
-SERVER_HOST = '127.0.0.1'
-SERVER_PORT = 8888
+# Declarando variáveis de conexão para conectar com o servidor
+SERVER_HOST = '192.168.15.10' # Endereço do servidor
+SERVER_PORT = 8888 # Porta de conexão
+server = (SERVER_HOST, SERVER_PORT)
 
+# Definindo socket de conexão TCP IPV4
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect((SERVER_HOST, SERVER_PORT)) # s.bind() funciona apenas para subir um servidor escutando em tal porta
+
+# Conectando com o servidor
+s.connect(server)
+
 # Enviado dados ao servidor
-s.sendall(str.encode('Testando conexão'))
+packet = 'Testando conexão'
+s.sendall(str.encode(packet))
+
 # Recebendo dados do servidor
 serverResponse = s.recv(1024)
 response = serverResponse.decode('utf-8')
 print(response)
 
+# Encerrando socket de conexão com o servidor
 s.close()
